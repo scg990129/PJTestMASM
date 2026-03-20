@@ -11,9 +11,9 @@ myy SQWORD ?
 
 .code
 main PROC
-  mov eax, 7
+  mov eax, 9
   add eax, 8
-  INVOKE ExitProcess, eax 
+  INVOKE ExitProcess, eax
 main ENDP
 
 END main        ;specify the program's entry point
