@@ -1,0 +1,107 @@
+Microsoft (R) Macro Assembler Version 14.36.32548.0	    03/20/26 18:30:59
+Ch3_1.asm						     Page 1 - 1
+
+
+				COMMENT !
+				CS 130#16635
+				CH03 Lab
+				Student: Jacob Yeung #900494756
+
+				Assembly Language Programming Labs
+
+				Lab 3-1 (10 points)
+				Complete a program with the following requirements:
+
+				Variable Declarations:
+				Declare variables n1, n2, n3 with values 10, 20, and 30 respectively
+				Declare variable n4 with value 10
+				Important: Use the smallest possible data size for these values
+				Operations:s
+				Subtract n1, n2, and n3 from n4
+				Submission Requirements:
+				Program verification screenshot
+				Memory area image for all four variables
+				Listing file
+				Ch3_1.asm file (do not zip)
+				!
+
+				.386
+				.model flat, stdcall
+				.stack 4096
+
+				ExitProcess PROTO, dwExitCode:DWORD
+
+
+ 00000000			.data
+				; Lab 3-1 Important: Use the smallest possible data size for these values
+				; Declare variables n1, n2, n3 with values 10, 20, and 30 respectivelys
+ 00000000 0A			    n1 BYTE 10
+ 00000001 14			    n2 BYTE 20
+ 00000002 1E			    n3 BYTE 30
+				; Declare variable n4 with value 10
+ 00000003 0A			    n4 BYTE 10
+				; SQWORD signed quadword 8 bytes
+
+ 00000000			.code
+ 00000000			main PROC
+				  ; AL: Lower 8-bits of AX
+ 00000000  A0 00000003 R	  mov al, n4
+				  ; ready to calculation in AL register 
+ 00000005  2A 05 00000000 R	  sub al, n1
+ 0000000B  2A 05 00000001 R	  sub al, n2
+ 00000011  2A 05 00000002 R	  sub al, n3
+				  ; DONE Subtract n1, n2, and n3 from n4
+
+				  INVOKE ExitProcess, 0; al 
+ 00000017  6A 00	   *	    push   +000000000h
+ 00000019  E8 00000000 E   *	    call   ExitProcess
+				  ; call DumpRegs   ; Display registers to verify the result in AL (CEh = -50)
+ 0000001E			main ENDP
+
+				END main        ;specify the program's entry point
+				; https://programminghaven.home.blog/2020/02/16/setup-an-assembly-project-on-visual-studio-2019/
+				; TBYTE 80-bit (10-byte) integer
+Microsoft (R) Macro Assembler Version 14.36.32548.0	    03/20/26 18:30:59
+Ch3_1.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+STACK  . . . . . . . . . . . . .	32 Bit	 00001000 DWord	  Stack	  'STACK'	 
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000004 DWord	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 0000001E DWord	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+ExitProcess  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 0000001E Public STDCALL
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000003h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+n1 . . . . . . . . . . . . . . .	Byte	 00000000 _DATA	
+n2 . . . . . . . . . . . . . . .	Byte	 00000001 _DATA	
+n3 . . . . . . . . . . . . . . .	Byte	 00000002 _DATA	
+n4 . . . . . . . . . . . . . . .	Byte	 00000003 _DATA	
+
+	   0 Warnings
+	   0 Errors
