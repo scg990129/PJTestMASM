@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <MASM Include="Ch4_1.asm">
+    <MASM Include="Ch4_2.asm">
       <Filter>Source Files</Filter>
     </MASM>
   </ItemGroup>
