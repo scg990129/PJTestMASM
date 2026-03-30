@@ -146,7 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <MASM Include="Ch3_2.asm">
+    <MASM Include="Ch4_1.asm">
       <AssembledCodeListingFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(File_name).lst</AssembledCodeListingFile>
     </MASM>
   </ItemGroup>
