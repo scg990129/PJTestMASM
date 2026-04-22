@@ -7,34 +7,25 @@ Assembly Language Programming Labs
 Lab 4-2
 !
 
-.386
-.model flat, stdcall
-.stack 4096
-
-ExitProcess PROTO, dwExitCode:DWORD
+INCLUDE Irvine32.inc
 
 .data
     fibArray DWORD 15 DUP(0)
+    message BYTE "Irvine32 Library is working!", 0dh, 0ah, 0
 
 .code
 main PROC
-    mov fibArray[0], 1      ; Fib(1) = 1
-    mov fibArray[4*1], 2      ; Fib(2) = 2
+    ; 1. Print the string to the console
+    mov edx, OFFSET message
+    call WriteString
 
-    mov ecx, 15-2           ; loop 15-2 times
-    mov esi, 4*2              ; index 3 = Offset 4*2=8
+    ; 2. Display the current CPU registers
+    call DumpRegs
 
-L1:
-    ; Fib(n) = Fib(n-1) + Fib(n-2)
-    mov eax, [fibArray + esi - 4*1]
-    add eax, [fibArray + esi - 4*2]
-    
-    mov [fibArray + esi], eax      ; result = current position
-    
-    add esi, 4                    ; next pt DWORD
-    loop L1
+    ; 3. Wait for a key press before closing
+    call WaitMsg
 
-    INVOKE ExitProcess, fibArray[4*(15-1)] 
 main ENDP
 
 END main
+; https://www.asmirvine.com/s

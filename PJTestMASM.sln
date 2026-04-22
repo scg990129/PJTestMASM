@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.36631.11
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.35707.66
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PJTestMASM", "PJTestMASM\PJTestMASM.vcxproj", "{2536D74F-C2BE-4200-A027-C155AF913967}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ch3_2", "PJTestMASM\PJTestMASM.vcxproj", "{2536D74F-C2BE-4200-A027-C155AF913967}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{001D52DD-FC3D-47E3-807E-1D51CCE08DEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
