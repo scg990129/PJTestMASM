@@ -4,10 +4,10 @@ CH05 Lab Assignment
 Student: Jacob Yeung #900494756
 
 Assembly Language Programming Labs
-Lab 5-2: Assignment 2 - Ascending Number Pattern
+Lab 5-3: Assignment 3 - Repeated Number Pattern
 Create a Microsoft Macro Assembly (MASM) program,
-LP502 to prompt the user to enter a number between 1 and 9. 
-Write a nested loop to print the numbers in an ascending pattern.
+LP503 to prompt the user to enter a number between 1 and 9. 
+Write a nested loop to print a pattern of repeated numbers.
 !
 
 INCLUDE Irvine32.inc
@@ -15,16 +15,48 @@ INCLUDE Irvine32.inc
 .data
     prompt BYTE "Enter a value for length: ", 0
     errorMsg BYTE "Invalid input (Not 1-9). Please try again!", 0dh, 0ah, 0
+    inputVal DWORD ? 
 
 .code
 main PROC
     call GetInput
     movzx ecx, al
-    mov bl, al
-    call PrintPattern
+    mov inputVal, ecx
+    ;mov bl, al
+    ;call PrintPattern
+    call PrintRepeating
     ; call WaitMsg
-    invoke ExitProcess, bl
+    invoke ExitProcess, ecx
 main ENDP
+
+; Document how arguments are passed to the procedures
+;---------------------------------------------------------
+; PrintRepeating
+;
+; Print out a repeated numeric pattern
+; Receives: 'inputVal' memory - the number about total of rows to control the print pattern
+; Returns:  None
+;---------------------------------------------------------
+PrintRepeating PROC
+    mov ecx, inputVal      ; ecx = total of rows
+    mov ebx, 1
+
+L_Outer:
+    push ecx
+    mov ecx, inputVal
+
+L_Inner:
+    mov eax, ebx
+    call WriteDec
+    loop L_Inner
+    
+    call Crlf
+    inc  ebx
+    pop  ecx
+    loop L_Outer
+    
+    ret
+PrintRepeating ENDP
 
 ; Document how arguments are passed to the procedures
 ;---------------------------------------------------------

@@ -149,7 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <MASM Include="LP502.asm">
+    <MASM Include="LP503.asm">
       <AssembledCodeListingFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(File_name).lst</AssembledCodeListingFile>
     </MASM>
   </ItemGroup>
