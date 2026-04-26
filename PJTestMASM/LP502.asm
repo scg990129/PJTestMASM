@@ -1,13 +1,13 @@
 COMMENT !
 CS 130#16635
-CH05 Lab Assig
+CH05 Lab Assignment
 Student: Jacob Yeung #900494756
 
 Assembly Language Programming Labs
-Lab 5-1: Assignment 1 - Descending Number Pattern
+Lab 5-2: Assignment 2 - Ascending Number Pattern
 Create a Microsoft Macro Assembly (MASM) program,
-LP501 to prompt the user to enter a number between 1 and 9. 
-Write a nested loop to print the numbers in a descending pattern.
+LP502 to prompt the user to enter a number between 1 and 9. 
+Write a nested loop to print the numbers in an ascending pattern.
 !
 
 INCLUDE Irvine32.inc
@@ -57,23 +57,31 @@ GetInput ENDP
 ;---------------------------------------------------------
 ; PrintPattern
 ;
-; Print out a descending numeric pattern. [Create a procedure to output the numbers as required]
-; Receives: ECX = the starting length to control the print pattern
+; Print out a ascending numeric pattern. [Create a procedure to output the numbers as required]
+; Write a nested loop to print the numbers in an ascending pattern.
+; Receives: ECX = the targeted length to control the print pattern 
 ; Returns:  None
 ;---------------------------------------------------------
 PrintPattern PROC
+    mov ecx, eax         ; ECX = (total number of rows)
+    mov ebx, 1           ; EBX = first number
+
 L_Outer:
-    push ecx
-    mov  eax, 1
+    push ecx             ; total rows counter
     
+    ; Inner Loop Setup
+    mov ecx, ebx         ; for each row: loop runs 'EBX' times
+    mov eax, 1           ; print from 1
+
 L_Inner:
-    call WriteDec
-    inc  eax
-    loop L_Inner
+    call WriteDec        ; print number (cell)
+    inc  eax             ; eax++
+    loop L_Inner         ; loop until ECX = 0
     
-    call Crlf
-    pop  ecx
-    loop L_Outer
+    call Crlf            ; \n
+    inc  ebx             ; row++
+    pop  ecx             ; ecx = total row count
+    loop L_Outer         ; loop until n = counter
     
     ret
 PrintPattern ENDP
